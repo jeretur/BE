@@ -1,8 +1,7 @@
 # Test HTTP requests
 ### use with: REST Client extension
 @apiurl = http://localhost:3000/api
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6ImRpaWRhYWJhIiwiZW1haWwiOiJkQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjYtMDMtMDRUMTQ6MjA6NTQuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzcyOTEzMTU1LCJleHAiOjE3NzI5OTk1NTV9.QSD1fJkgxuCL35P_PC2eFP2DzzaTtg7y2mBU6gx3sJY
-GET {{apiurl}}/items
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJ1c2VybmFtZSI6IkplcmUiLCJlbWFpbCI6ImplcmV0dXJAbWV0cm9wb2xpYS5maSIsImNyZWF0ZWRfYXQiOiIyMDI2LTAzLTA0VDE0OjI4OjE2LjAwMFoiLCJ1c2VyX2xldmVsIjoicmVndWxhciIsImlhdCI6MTc3Mjk4NzU3MiwiZXhwIjoxNzczMDczOTcyfQ.QLdgUTDVzBfI4gJpXyKfLdLYbiT54Ib8N3csMsmjS_0
 
 ### GET item with id 1
 GET {{apiurl}}/items/1
@@ -73,7 +72,7 @@ GET {{apiurl}}/entries
 Authorization: Bearer {{token}}
 
 ### Get entry by id
-GET {{apiurl}}/entries/6
+GET {{apiurl}}/entries/1
 
 ### Delete entry by id
 DELETE {{apiurl}}/entries/9
@@ -91,3 +90,7 @@ Authorization: Bearer {{token}}
   "sleep_hours": 5,
   "notes": "normipäivä"
 }
+
+### Get all exercises
+GET {{apiurl}}/entries/stats
+Authorization: Bearer {{token}}

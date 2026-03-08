@@ -3,8 +3,9 @@ import {
   findEntryById,
   addEntry,
   listAllEntriesByUserId,
+  listAllExercisesByUserId,
   removeEntryById,
-  addExerciseEntry
+  addExerciseEntry,
 } from '../models/entry-model.js';
 
 const getEntries = async (req, res) => {
@@ -20,6 +21,20 @@ const getEntries = async (req, res) => {
   }
 };
 
+const getExercises = async (req, res) => {
+  // haetaan kaikkien käyttäjien merkinnät
+  //const result = await listAllEntries();
+  // haetaan kirjautuneen (token) käyttäjän omat merkinnät
+  const result = await listAllExercisesByUserId(req.user.user_id);
+  if (!result.error) {
+    res.json(result);
+  } else {
+    res.status(500);
+    res.json(result);
+  }
+};
+
+
 const getEntryById = async (req, res) => {
   const entry = await findEntryById(req.params.id);
   if (entry) {
@@ -28,6 +43,8 @@ const getEntryById = async (req, res) => {
     res.sendStatus(404);
   }
 };
+
+
 
 const postEntry = async (req, res) => {
   const {entry_date, mood, weight, sleep_hours, notes} = req.body;
@@ -78,4 +95,4 @@ const deleteEntry = async (req, res) => {
   }
 };
 
-export {getEntries, getEntryById, postEntry, postExerciseEntry, putEntry, deleteEntry};
+export {getEntries, getExercises, getEntryById, postEntry, postExerciseEntry, putEntry, deleteEntry,};

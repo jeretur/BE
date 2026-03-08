@@ -12,6 +12,7 @@ const listAllEntries = async () => {
   }
 };
 
+
 const listAllEntriesByUserId = async (id) => {
   try {
     const sql = 'SELECT * FROM DiaryEntries WHERE user_id = ?';
@@ -22,6 +23,19 @@ const listAllEntriesByUserId = async (id) => {
     return {error: e.message};
   }
 };
+
+const listAllExercisesByUserId = async (id) => {
+    try {
+    const sql = 'SELECT * FROM Exercises WHERE user_id = ?';
+    const [rows] = await promisePool.execute(sql, [id]);
+    return rows;
+  } catch (e) {
+    console.error('error', e.message);
+    return {error: e.message};
+  }
+};
+
+
 
 const findEntryById = async (id) => {
   try {
@@ -68,7 +82,6 @@ const addExerciseEntry = async (entry) => {
   }
 };
 
-
 const removeEntryById = async (entryId, userId) => {
   const sql = 'DELETE from DiaryEntries WHERE entry_id = ? AND user_id = ?';
   const [result] = await promisePool.execute(sql, [entryId, userId]);
@@ -76,4 +89,4 @@ const removeEntryById = async (entryId, userId) => {
   return result.affectedRows;
 };
 
-export {listAllEntries, findEntryById, addEntry, listAllEntriesByUserId, removeEntryById, addExerciseEntry};
+export {listAllEntries, findEntryById, addEntry, listAllEntriesByUserId, listAllExercisesByUserId, removeEntryById, addExerciseEntry};

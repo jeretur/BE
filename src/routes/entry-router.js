@@ -3,9 +3,10 @@ import {body} from 'express-validator';
 import {
   deleteEntry,
   getEntries,
+  getExercises,
   getEntryById,
   postEntry,
-  postExerciseEntry
+  postExerciseEntry,
 } from '../controllers/entry-controller.js';
 import {authenticateToken} from '../middlewares/authentication.js';
 import {validationErrorHandler} from '../middlewares/error-handlers.js';
@@ -27,6 +28,8 @@ entryRouter.route('/exercises').get(authenticateToken, getEntries).post(
   validationErrorHandler,
   postExerciseEntry
 );
+
+entryRouter.route('/stats').get(authenticateToken, getExercises);
 
 entryRouter
   .route('/:id')
